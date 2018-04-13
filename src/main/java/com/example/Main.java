@@ -33,6 +33,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @SpringBootApplication
@@ -51,6 +54,16 @@ public class Main {
   @RequestMapping("/")
   String index() {
     return "index";
+  }
+  
+  @RequestMapping("/hello")
+  ResponseEntity<?> hello(){
+      return new ResponseEntity<>("Parcial 2 - AREM 2018",HttpStatus.ACCEPTED);
+  }
+  
+  @RequestMapping("/cuadrado")
+  ResponseEntity<?> cuadrado(@RequestParam("valor") int valor){
+      return new ResponseEntity<>(new Square(valor),HttpStatus.ACCEPTED);
   }
 
   @RequestMapping("/db")
